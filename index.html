@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrewHaven - Premium Coffee Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <span class="coffee-icon">☕</span>
+                    <span class="logo-text">BrewHaven</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-page="home">Home</a>
+                    <a href="#" class="nav-link" data-page="products">Shop</a>
+                    <a href="#" class="nav-link" id="ordersLink" style="display: none;" data-page="orders">Orders</a>
+                    <a href="#" class="nav-link" id="adminLink" style="display: none;" data-page="admin">Admin</a>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                
+                <div id="userSection" style="display: none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn-secondary" id="logoutBtn">Logout</button>
+                </div>
+                
+                <button class="btn-primary" id="loginBtn">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <section class="hero">
+                <h1>Premium Coffee Delivered</h1>
+                <p>Experience the finest coffee beans from around the world, roasted to perfection and delivered fresh to your door.</p>
+                <button class="btn-large" data-page="products">Shop Now</button>
+            </section>
+
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">☕</div>
+                    <h3>Premium Quality</h3>
+                    <p>Hand-selected beans from the world's best coffee regions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Fast Shipping</h3>
+                    <p>Free delivery on orders over $50, delivered fresh</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Expert Roasting</h3>
+                    <p>Perfectly roasted by our master roasters</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <h2>Featured Coffees</h2>
+                <div id="featuredProducts" class="products-grid"></div>
+            </section>
+        </div>
+
+        <!-- Products Page -->
+        <div id="productsPage" class="page">
+            <h1>Our Coffee Collection</h1>
+            
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label>Search</label>
+                    <input type="text" id="searchInput" placeholder="Search coffees...">
+                </div>
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select id="categoryFilter">
+                        <option>All</option>
+                        <option>Single Origin</option>
+                        <option>Blend</option>
+                        <option>Decaf</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Roast Level</label>
+                    <select id="roastFilter">
+                        <option>All</option>
+                        <option>Light</option>
+                        <option>Medium</option>
+                        <option>Dark</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="productsGrid" class="products-grid"></div>
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        <!-- Cart Page -->
+        <div id="cartPage" class="page">
+            <h1>Shopping Cart</h1>
+            <div id="cartEmpty" class="empty-state">
+                <div class="empty-icon">🛒</div>
+                <h2>Your cart is empty</h2>
+                <button class="btn-primary" data-page="products">Start Shopping</button>
+            </div>
+            <div id="cartContent" style="display: none;">
+                <div id="cartItems" class="cart-items"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cartTotal" class="total-price">$0.00</span>
+                    </div>
+                    <button class="btn-large" id="checkoutBtn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Page -->
+        <div id="checkoutPage" class="page">
+            <h1>Checkout</h1>
+            <div class="checkout-container">
+                <form id="checkoutForm" class="checkout-form">
+                    <div class="form-section">
+                        <h2>Shipping Information</h2>
+                        <div class="form-row">
+                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <input type="text" name="address" placeholder="Street Address" required>
+                        <div class="form-row">
+                            <input type="text" name="city" placeholder="City" required>
+                            <input type="text" name="zipCode" placeholder="ZIP Code" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2>Payment Information</h2>
+                        <input type="text" name="cardNumber" placeholder="Card Number" maxlength="16" required>
+                        <div class="form-row">
+                            <input type="text" name="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                            <input type="text" name="cardCVC" placeholder="CVC" maxlength="3" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-large">Place Order</button>
+                </form>
+                
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="checkoutItems"></div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div id="ordersPage" class="page">
+            <h1>Order History</h1>
+            <div id="ordersList" class="orders-list"></div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminPage" class="page">
+            <h1>Admin Dashboard</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="statRevenue">$0</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value" id="statOrders">0</div>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">☕</div>
+                    <div class="stat-value" id="statProducts">0</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="statCustomers">0</div>
+                    <div class="stat-label">Customers</div>
+                </div>
+            </div>
+            
+            <div class="admin-section">
+                <h2>Recent Orders</h2>
+                <div id="adminOrdersList" class="admin-orders"></div>
+            </div>
+        </div>
+
+        <!-- Login/Register Page -->
+        <div id="authPage" class="page">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="btn-large">Login</button>
+                    <p class="auth-hint">Demo: admin@coffee.com / admin123</p>
+                </form>
+                
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <h2>Create Account</h2>
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="btn-large">Register</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

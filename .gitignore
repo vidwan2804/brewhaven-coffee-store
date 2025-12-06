@@ -1,0 +1,65 @@
+# =========================
+#   ENVIRONMENT FILES
+# =========================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# =========================
+#   NODE DEPENDENCIES
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+#   LOG FILES
+# =========================
+logs/
+*.log
+debug.log
+
+# =========================
+#   BUILD OUTPUT
+# =========================
+dist/
+build/
+.out/
+.next/
+.cache/
+
+# =========================
+#   TEMP / SYSTEM FILES
+# =========================
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# =========================
+#   FRONTEND SPECIFIC
+# =========================
+# If using React/Vue/Next    
+*.env.local
+.cache/
+coverage/
+.vscode/
+.idea/
+
+# =========================
+#   MONGO & DATABASE
+# =========================
+dump/
+*.bson
+*.gz
+
+# =========================
+#   OPTIONAL
+# =========================
+# If using uploads
+uploads/
+public/uploads/
