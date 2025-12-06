@@ -1,10 +1,10 @@
-# ☕ BrewHaven – Premium Coffee Store  
+#  BrewHaven – Premium Coffee Store  
 A full-stack e-commerce application built using **HTML, CSS, JavaScript (frontend)** and **Node.js, Express, MongoDB (backend)**.  
 Users can browse products, filter coffee types, add items to cart, register/login, place orders, and admins can manage the store with a dashboard.
 
 ---
 
-## 🚀 Features
+##  Features
 
 ### 🔹 User Features
 - Browse all coffee products  
@@ -28,12 +28,12 @@ Users can browse products, filter coffee types, add items to cart, register/logi
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - HTML5  
 - CSS3  
-- Vanilla JavaScript (app.js)  
+- JavaScript (app.js)  
 - LocalStorage for cart & auth  
 
 ### Backend
@@ -46,7 +46,7 @@ Users can browse products, filter coffee types, add items to cart, register/logi
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 BrewHaven/
 │── backend/
